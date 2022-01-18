@@ -1,0 +1,23 @@
+{
+  "name": "notepads",
+  "version": "1.0.0",
+  "description": "Uma plataforma de notas e lembretes",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlos-aniel/notepads.git"
+  },
+  "author": "Carlos Kauan,  Carlos Aniel e Victor Eduardo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlos-aniel/notepads/issues"
+  },
+  "homepage": "https://github.com/carlos-aniel/notepads#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2"
+  }
+}
