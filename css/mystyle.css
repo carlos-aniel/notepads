@@ -1,0 +1,17 @@
+:root {
+    /**/
+    --background: #2d3945;
+    --button: #465866;
+    --input: #5c6f75;
+    --blocknote: #a2a7ba;
+    --title-color: #bbc1cd;
+}
+* {
+    font-family: 'Ubuntu', sans-serif;
+    background: var(--background);
+    color: var(--title-color);
+}
+#casa{
+    width: 32px;
+    height: 32px;
+}
