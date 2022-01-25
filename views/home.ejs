@@ -1,0 +1,20 @@
+<%-include('./partials/header.ejs')%>
+<body>
+    <%-include('./partials/navbar.ejs')%>
+    <div class="conteiner">
+        
+        <!--Sem Login-->
+       <%if(login === false){%>
+            <h1>Voce não contem login</h1>
+        <%}%>
+        <!--END-->
+
+        <!--Com Login-->
+       <%if(login === true){%>
+            <h1>Voce esta logado no usuario <%=nome %> </h1>
+        <%}%>
+        <!--END-->
+
+    </div>
+</body>
+<%-include('./partials/footer.ejs')%>
