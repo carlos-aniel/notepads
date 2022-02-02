@@ -3,16 +3,18 @@ const app = express();
 const port = process.env.PORT || 7070;
 const bodyParser = require('body-parser');
 const { urlencoded } = require('body-parser');
-const connection = require('./data_base/dbconnect.js')
+const connect = require('./data_base/connectdb.js');
+const Usuario = require('./data_base/migration/Usuario.js');
+const Nota = require('./data_base/migration/Nota.js');
 
-connection
-    .authenticate()
-    .then(()=>{
-        console.log('Conexão com banco de dados estabelecida');
-    })
-    .catch((error)=>{
-        console.log(`Erro ao estabelecer conexão... ERRO => {error}`)
-    })
+connect.authenticate()
+        .then(()=>{
+            console.log('Conexão com banco de dados realizada com sucesso...')
+        })
+        .catch((error)=>{
+            console.log(`Conexão não estabelecida com banco de dados...\nErro:\t${error}`);
+        })
+
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -20,7 +22,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 //Routes
-app.get('/',(req, res)=>{
+app.get('/home',(req, res)=>{
     var login = false;
     res.render('home.ejs',{login: login});
 });
@@ -48,15 +50,25 @@ app.get('/signup',(req, res)=>{
 });
 
 //POSTS
-app.post('/',(req, res)=>{
+app.post('/sendsingin',(req, res)=>{
     var login = true;
     var nome = req.body.name;
     var senha = req.body.password;
-    res.render('home.ejs',{
-        nome: nome,
-        senha: senha,
-        login: login
-    })
+        //Consulta sql
+    res.redirect('/home')
+});
+
+app.post('/sendsingup', (req, res)=>{
+    var usuario = req.body.name;
+    var email = req.body.email;
+    var senha = String(req.body.password);
+    Usuario.create({
+        username: usuario,
+        email: email,
+        password: senha
+
+    });
+    res.redirect('/home');
 });
 
 
